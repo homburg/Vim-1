@@ -632,6 +632,10 @@ function handleContentChangedFromDisk(document: vscode.TextDocument): void {
   ModeHandlerMap.getAll()
     .filter((modeHandler) => modeHandler.vimState.documentUri === document.uri)
     .forEach((modeHandler) => {
-      modeHandler.vimState.historyTracker = new HistoryTracker(modeHandler.vimState);
+      vscode.window.showInformationMessage(
+        `handleContentChangedFromDisk ${new Date().toISOString()}`
+      );
+      // Disabled to try debugging https://github.com/VSCodeVim/Vim/issues/8157
+      // modeHandler.vimState.historyTracker = new HistoryTracker(modeHandler.vimState);
     });
 }
